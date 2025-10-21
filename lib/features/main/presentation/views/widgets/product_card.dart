@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nti_graduation_app/core/widgets/custom_cached_network_image.dart';
+import 'package:nti_graduation_app/features/main/data/model/product_model.dart';
 import 'package:nti_graduation_app/features/main/presentation/views/part_view/details_view.dart';
 
 class ProductCard extends StatelessWidget {
-  final String img, title, price;
+  final ProductModel productModel;
   const ProductCard({
-    required this.img,
-    required this.title,
-    required this.price,
-    super.key,
+    required this.productModel, super.key,
   });
 
   @override
@@ -19,10 +17,7 @@ class ProductCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (_) => DetailsView(
-              imageUrl: img,
-              title: title,
-              price: price,
-              description: 'this is a good product',
+              productModel: productModel,
             ),
           ),
         );
@@ -41,17 +36,21 @@ class ProductCard extends StatelessWidget {
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(12),
                 ),
-                child: CustomCachedNetworkImage(image: img),
+                child: CustomCachedNetworkImage(image: productModel.imageUrl),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
+              child: Text(
+                productModel.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                price,
+                '${productModel.price}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14,

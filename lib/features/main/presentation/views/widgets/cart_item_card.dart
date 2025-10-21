@@ -35,7 +35,7 @@ class CartItemCard extends StatelessWidget {
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
-          item.price,
+          item.price.toString(),
           style: const TextStyle(color: Colors.green),
         ),
         trailing: IconButton(

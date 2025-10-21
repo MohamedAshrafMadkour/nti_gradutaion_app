@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_graduation_app/core/widgets/custom_cached_network_image.dart';
 import 'package:nti_graduation_app/features/main/data/model/category_model.dart';
+import 'package:nti_graduation_app/features/main/presentation/manager/product%20cubit/product_cubit.dart';
 import 'package:nti_graduation_app/features/main/presentation/views/part_view/category_details_view.dart';
 
 class CategoriesList extends StatelessWidget {
@@ -17,12 +19,19 @@ class CategoriesList extends StatelessWidget {
         separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (_, index) {
           final category = categories[index];
+
           return GestureDetector(
             onTap: () {
+              final cubit = context.read<ProductCubit>();
+              cubit.getProduct(endPoint: category.endPoints);
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => CategoryItemsView(category: category),
+                  builder: (_) => BlocProvider.value(
+                    value: cubit, // 🔥 نفس الكيوبت اللي فوق
+                    child: CategoryItemsView(),
+                  ),
                 ),
               );
             },

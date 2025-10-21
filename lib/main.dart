@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:nti_graduation_app/features/main/presentation/views/main_view.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // Shared.init();
+
   runApp(const NtiGraduationApp());
 }
 

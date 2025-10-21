@@ -41,7 +41,7 @@ class _CartViewState extends State<CartView> {
                   ),
                 ),
                 CustomCartSection(
-                  totalPrice: totalPrice,
+                  totalPrice: 32323,
                 ),
               ],
             ),

@@ -1,41 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_graduation_app/core/function/second_app_bar.dart';
-import 'package:nti_graduation_app/features/main/data/model/category_model.dart';
-import 'package:nti_graduation_app/features/main/data/model/product_model.dart';
+import 'package:nti_graduation_app/features/main/presentation/manager/product%20cubit/product_cubit.dart';
 import 'package:nti_graduation_app/features/main/presentation/views/widgets/category_card_item.dart';
 
 class CategoryItemsView extends StatelessWidget {
-  final CategoryModel category;
-
-  const CategoryItemsView({required this.category, super.key});
+  const CategoryItemsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<ProductModel> items = List.generate(10, (index) {
-      return ProductModel(
-        title: '${category.title} Product ${index + 1}',
-        price: '\$${(index + 1) * 20}',
-        imageUrl: 'https://picsum.photos/200/200?image=${index + 10}',
-      );
-    });
-
     return Scaffold(
-      appBar: secondAppBar(title: category.title),
-      body: items.isEmpty
-          ? const Center(
-              child: Text(
-                'No items available in this category!',
-                style: TextStyle(fontSize: 18),
-              ),
-            )
-          : ListView.builder(
+      appBar: secondAppBar(title: 'Products'),
+      body: BlocBuilder<ProductCubit, ProductState>(
+        builder: (context, state) {
+          if (state is ProductSuccess) {
+            return ListView.builder(
               padding: const EdgeInsets.all(16),
-              itemCount: items.length,
+              itemCount: state.products.length,
               itemBuilder: (context, index) {
-                final item = items[index];
+                final item = state.products[index];
                 return CategoryItemCard(item: item);
               },
-            ),
+            );
+          } else if (state is ProductFailure) {
+            return Center(
+              child: Text(state.errMessage),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
 }

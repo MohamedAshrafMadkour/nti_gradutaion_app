@@ -51,7 +51,7 @@ class FavItemCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      item.price,
+                      item.price.toString(),
                       style: const TextStyle(
                         color: Colors.green,
                         fontWeight: FontWeight.bold,

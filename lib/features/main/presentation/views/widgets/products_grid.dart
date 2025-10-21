@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nti_graduation_app/features/main/data/model/product_model.dart';
 import 'package:nti_graduation_app/features/main/presentation/views/widgets/product_card.dart';
 
 class ProductsGrid extends StatelessWidget {
@@ -22,9 +23,14 @@ class ProductsGrid extends StatelessWidget {
         itemBuilder: (_, i) {
           final p = products[i];
           return ProductCard(
-            img: p['img']!,
-            title: p['title']!,
-            price: p['price']!,
+            productModel: ProductModel(
+              id: 3,
+              description: 'description',
+              title: 'title',
+              price: 32323,
+              imageUrl:
+                  'https://sm.pcmag.com/t/pcmag_mear/review/l/lenovo-ide/lenovo-ideapad-3i-15-2022_771j.1920.jpg',
+            ),
           );
         },
       ),

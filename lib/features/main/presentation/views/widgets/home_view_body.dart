@@ -29,7 +29,7 @@ class HomeViewBody extends StatelessWidget {
                   const SizedBox(height: 12),
                   const SectionHeader(title: 'Daily Deals'),
                   const SizedBox(height: 12),
-                  HorizontalProducts(products: StaticData.products),
+                  HorizontalProducts(),
                   const SizedBox(height: 12),
                   const SectionHeader(title: 'Recommended for you'),
                   const SizedBox(height: 12),
