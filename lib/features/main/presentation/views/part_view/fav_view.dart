@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:nti_graduation_app/core/function/custom_snack_bar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_graduation_app/core/function/second_app_bar.dart';
-import 'package:nti_graduation_app/features/main/data/model/product_model.dart';
+import 'package:nti_graduation_app/features/main/presentation/manager/fav_cubit/favorite_cubit.dart';
 import 'package:nti_graduation_app/features/main/presentation/views/widgets/fav_item_card.dart';
 
 class FavView extends StatefulWidget {
@@ -12,39 +14,49 @@ class FavView extends StatefulWidget {
 }
 
 class _FavViewState extends State<FavView> {
-  void removeFavorite(int index) {
-    setState(() => favoriteItems.removeAt(index));
-    customSnackBar(context, isAdded: false);
+  @override
+  void initState() {
+    BlocProvider.of<FavoriteCubit>(context).getFav();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: secondAppBar(title: 'Favorites'),
-      body: favoriteItems.isEmpty
-          ? const Center(
-              child: Text(
-                'No favorites yet ❤️',
-                style: TextStyle(fontSize: 18),
-              ),
-            )
-          : GridView.builder(
-              padding: const EdgeInsets.all(16),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: 0.9,
-              ),
-              itemCount: favoriteItems.length,
-              itemBuilder: (context, index) {
-                final item = favoriteItems[index];
-                return FavItemCard(
-                  item: item,
-                  onRemove: () => removeFavorite(index),
-                );
-              },
-            ),
+      body: BlocBuilder<FavoriteCubit, FavoriteState>(
+        builder: (context, state) {
+          if (state is FavoriteSuccess) {
+            log(state.favoriteItems.toString());
+            return state.favoriteItems.isEmpty
+                ? const Center(
+                    child: Text(
+                      'No favorites yet ❤️',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  )
+                : GridView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.all(16),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+                          childAspectRatio: 0.9,
+                        ),
+                    itemCount: state.favoriteItems.length,
+                    itemBuilder: (context, index) {
+                      return FavItemCard(item: state.favoriteItems[index]);
+                    },
+                  );
+          } else if (state is FavoriteFailure) {
+            return Center(child: Text(state.errorMessage));
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 }

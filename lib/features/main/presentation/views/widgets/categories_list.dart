@@ -19,17 +19,15 @@ class CategoriesList extends StatelessWidget {
         separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (_, index) {
           final category = categories[index];
-
           return GestureDetector(
             onTap: () {
-              final cubit = context.read<ProductCubit>();
+              final cubit = context.read<CategoryProductCubit>();
               cubit.getProduct(endPoint: category.endPoints);
-
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (_) => BlocProvider.value(
-                    value: cubit, // 🔥 نفس الكيوبت اللي فوق
+                    value: cubit,
                     child: CategoryItemsView(),
                   ),
                 ),
@@ -50,7 +48,7 @@ class CategoriesList extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  category.title, // Display category title dynamically
+                  category.title,
                   style: const TextStyle(fontSize: 12),
                 ),
               ],

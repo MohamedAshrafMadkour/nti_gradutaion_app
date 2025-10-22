@@ -11,27 +11,39 @@ class CategoryModel {
 
 final List<CategoryModel> categories = [
   CategoryModel(
-    title: 'Electronics',
+    title: 'Furniture',
     imageUrl:
-        'https://cdn.pixabay.com/photo/2015/01/21/14/14/apple-606761_1280.jpg',
-    endPoints: '/category/electronics', // لابتوب وإلكترونيات ✅
+        'https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-bed/thumbnail.webp',
+    endPoints: 'furniture',
   ),
   CategoryModel(
-    title: 'Jewelery',
+    title: 'kitchen-accessories',
     imageUrl:
-        'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=60',
-    endPoints: '/category/jewelery', // مجوهرات ✅
+        'https://cdn.dummyjson.com/product-images/kitchen-accessories/black-aluminium-cup/thumbnail.webp',
+    endPoints: 'kitchen-accessories',
   ),
   CategoryModel(
-    title: "Men's Clothing",
+    title: 'Laptops',
     imageUrl:
-        'https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=800&q=60',
-    endPoints: "/category/men's clothing", // لبس رجالي ✅
+        'https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/thumbnail.webp',
+    endPoints: 'laptops',
   ),
   CategoryModel(
-    title: "Women's Clothing",
+    title: 'Mobile Accessories',
     imageUrl:
-        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=60',
-    endPoints: "/category/women's clothing", // لبس حريمي (فستان أنيق وواضح)
+        'https://cdn.dummyjson.com/product-images/mobile-accessories/apple-airpods-max-silver/thumbnail.webp',
+    endPoints: 'mobile-accessories',
+  ),
+  CategoryModel(
+    title: 'Sports-accessories',
+    imageUrl:
+        'https://cdn.dummyjson.com/product-images/sports-accessories/baseball-ball/thumbnail.webp',
+    endPoints: 'sports-accessories',
+  ),
+  CategoryModel(
+    title: 'Sunglasses',
+    imageUrl:
+        'https://cdn.dummyjson.com/product-images/sunglasses/classic-sun-glasses/thumbnail.webp',
+    endPoints: 'sunglasses',
   ),
 ];

@@ -4,14 +4,14 @@ import 'package:nti_graduation_app/core/function/custom_snack_bar.dart';
 import 'package:nti_graduation_app/core/function/second_app_bar.dart';
 import 'package:nti_graduation_app/core/widgets/custom_button.dart';
 import 'package:nti_graduation_app/core/widgets/custom_cached_network_image.dart';
-import 'package:nti_graduation_app/features/main/data/model/category_products_model/category_products_model.dart';
 import 'package:nti_graduation_app/features/main/data/model/fav_model.dart';
+import 'package:nti_graduation_app/features/main/data/model/recommended_model/recommended_model.dart';
 import 'package:nti_graduation_app/features/main/presentation/manager/fav_cubit/favorite_cubit.dart';
 
-class CategoryProductsDetailsView extends StatelessWidget {
-  final CategoryProductsModel productModel;
+class RecommendedDetailsView extends StatelessWidget {
+  final RecommendedModel productModel;
 
-  const CategoryProductsDetailsView({
+  const RecommendedDetailsView({
     required this.productModel,
     super.key,
   });
@@ -26,15 +26,20 @@ class CategoryProductsDetailsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomCachedNetworkImage(image: productModel.thumbnail ?? ''),
+            CustomCachedNetworkImage(image: productModel.images?[0] ?? ''),
             const SizedBox(height: 20),
+
             Text(
               productModel.title ?? '',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 10),
+
             Text(
-              '${productModel.price}',
+              productModel.price.toString(),
               style: const TextStyle(
                 fontSize: 20,
                 color: Colors.green,
@@ -42,28 +47,27 @@ class CategoryProductsDetailsView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
+
             Text(
               productModel.description ?? '',
               style: const TextStyle(fontSize: 16),
             ),
-
             const SizedBox(height: 30),
+
             BlocBuilder<FavoriteCubit, FavoriteState>(
               builder: (context, state) {
+                final isFav = favCubit.isFavorite(productModel.title ?? '');
                 return CustomButton(
-                  color: favCubit.isFavorite(productModel.title ?? '')
-                      ? Colors.red
-                      : Colors.teal,
-                  title: favCubit.isFavorite(productModel.title ?? '')
-                      ? 'Remove from favorites'
-                      : 'Add to favorites',
+                  color: isFav ? Colors.red : Colors.teal,
+                  title: isFav ? 'Remove from favorites' : 'Add to favorites',
                   onPressed: () {
                     final favItem = FavoriteModel(
                       name: productModel.title ?? '',
-                      price: productModel.price ?? 0.0,
-                      image: productModel.thumbnail ?? '',
+                      price: productModel.price?.toDouble() ?? 0,
+                      image: productModel.images?[0] ?? '',
                     );
-                    if (favCubit.isFavorite(productModel.title ?? '')) {
+
+                    if (isFav) {
                       favCubit.deleteFav(name: productModel.title ?? '');
                       customSnackBar(context, isAdded: false);
                     } else {

@@ -8,9 +8,13 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NavBarCubit(),
-      child: MainScaffold(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => NavBarCubit(),
+        ),
+      ],
+      child: const MainScaffold(),
     );
   }
 }

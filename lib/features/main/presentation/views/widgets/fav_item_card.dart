@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_graduation_app/core/widgets/custom_cached_network_image.dart';
-import 'package:nti_graduation_app/features/main/data/model/product_model.dart';
+import 'package:nti_graduation_app/features/main/data/model/fav_model.dart';
+import 'package:nti_graduation_app/features/main/presentation/manager/fav_cubit/favorite_cubit.dart';
 
 class FavItemCard extends StatelessWidget {
   const FavItemCard({
     required this.item,
-    required this.onRemove,
+
     super.key,
   });
-
-  final ProductModel item;
-  final VoidCallback onRemove;
-
+  final FavoriteModel item;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -33,7 +32,7 @@ class FavItemCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomCachedNetworkImage(
-                image: item.imageUrl,
+                image: item.image,
               ),
               Padding(
                 padding: const EdgeInsets.all(8),
@@ -41,7 +40,7 @@ class FavItemCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.title,
+                      item.name,
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
@@ -67,20 +66,27 @@ class FavItemCard extends StatelessWidget {
         Positioned(
           top: 8,
           right: 8,
-          child: GestureDetector(
-            onTap: onRemove,
-            child: Container(
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.8),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.favorite,
-                color: Colors.red,
-                size: 22,
-              ),
-            ),
+          child: BlocBuilder<FavoriteCubit, FavoriteState>(
+            builder: (context, state) {
+              return GestureDetector(
+                onTap: () {
+                  context.read<FavoriteCubit>().deleteFav(name: item.name);
+                  context.read<FavoriteCubit>().getFav();
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.8),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    size: 22,
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ],

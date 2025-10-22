@@ -5,7 +5,7 @@ class ApiService {
 
   ApiService({required this.dio});
 
-  Future get({required String url, required String endPoint}) async {
+  Future get({required String url, required String? endPoint}) async {
     final response = await dio.get(
       '$url$endPoint',
     );

@@ -1,13 +1,22 @@
 {
-"source": {
-"id": null,
-"name": "BBC News"
+"id": 86,
+"title": "Classic White Crew Neck T-Shirt",
+"slug": "classic-white-crew-neck-t-shirt",
+"price": 39,
+"description": "Elevate your basics with this versatile white crew neck tee. Made from a soft, breathable cotton blend, it offers both comfort and durability. Its sleek, timeless design ensures it pairs well with virtually any outfit. Ideal for layering or wearing on its own, this t-shirt is a must-have staple for every wardrobe.",
+"category": {
+"id": 21,
+"name": "update",
+"slug": "update",
+"image": "https://i.imgur.com/QkIa5tT.jpeg",
+"creationAt": "2025-10-21T18:11:29.000Z",
+"updatedAt": "2025-10-22T08:19:06.000Z"
 },
-"author": "https://www.facebook.com/bbcnews",
-"title": "ما مدى تأثير مظاهرات دمشق على العلاقات بين مصر وسوريا؟",
-"description": "في محاولة لتهدئة الأجواء مع القاهرة، أصدرت وزارة الخارجية السورية بيانًا أعربت فيه عن استنكارها للهتافات المعادية لمصر ورئيسها، التي رُددت خلال إحدى التظاهرات في دمشق.",
-"url": "https://www.bbc.com/arabic/articles/c79vj9xg5edo",
-"urlToImage": "https://web-cdn.api.bbci.co.uk/arabic/og/c79vj9xg5edo",
-"publishedAt": "2025-09-30T20:22:06Z",
-"content": "/ . . . . . \" \" . \" \" . \" \". . . \" \". \" \" . . . . . \" \" : \" \". . \" \" . 4 « » . \" \" . . 12,800 2012 147,000 2024. 2025 ."
+"images": [
+"https://i.imgur.com/axsyGpD.jpeg",
+"https://i.imgur.com/T8oq9X2.jpeg",
+"https://i.imgur.com/J6MinJn.jpeg"
+],
+"creationAt": "2025-10-21T18:11:34.000Z",
+"updatedAt": "2025-10-21T18:11:34.000Z"
 }

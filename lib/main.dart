@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nti_graduation_app/core/helper/get_it_setup.dart';
+import 'package:nti_graduation_app/features/main/presentation/manager/fav_cubit/favorite_cubit.dart';
 import 'package:nti_graduation_app/features/main/presentation/views/main_view.dart';
 
 void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // Shared.init();
-
+  WidgetsFlutterBinding.ensureInitialized();
+  getItSetup();
   runApp(const NtiGraduationApp());
 }
 
@@ -13,15 +15,19 @@ class NtiGraduationApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'nti_graduation_app',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return BlocProvider(
+      create: (context) => FavoriteCubit(),
+
+      child: MaterialApp(
+        title: 'nti_graduation_app',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        home: const MainView(),
       ),
-      home: const MainView(),
     );
   }
 }

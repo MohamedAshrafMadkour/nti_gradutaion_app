@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nti_graduation_app/core/widgets/custom_cached_network_image.dart';
-import 'package:nti_graduation_app/features/main/data/model/category_products_model/category_products_model.dart';
-import 'package:nti_graduation_app/features/main/presentation/views/part_view/details_view.dart';
+import 'package:nti_graduation_app/features/main/data/model/recommended_model/recommended_model.dart';
+import 'package:nti_graduation_app/features/main/presentation/views/widgets/recommended_details_view.dart';
 
-class ProductCard extends StatelessWidget {
-  final CategoryProductsModel categoryProductModel;
-  const ProductCard({
-    required this.categoryProductModel,
+class RecommendedItem extends StatelessWidget {
+  final RecommendedModel recommendedModel;
+  const RecommendedItem({
+    required this.recommendedModel,
     super.key,
   });
 
@@ -17,8 +17,8 @@ class ProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => CategoryProductsDetailsView(
-              productModel: categoryProductModel,
+            builder: (_) => RecommendedDetailsView(
+              productModel: recommendedModel,
             ),
           ),
         );
@@ -38,14 +38,14 @@ class ProductCard extends StatelessWidget {
                   top: Radius.circular(12),
                 ),
                 child: CustomCachedNetworkImage(
-                  image: categoryProductModel.thumbnail ?? '',
+                  image: recommendedModel.images?[0] ?? '',
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                categoryProductModel.title ?? '',
+                recommendedModel.title ?? '',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -53,7 +53,7 @@ class ProductCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                '${categoryProductModel.price}',
+                '\$ ${recommendedModel.price}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
