@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:nti_graduation_app/core/error/failure.dart';
-import 'package:nti_graduation_app/core/service/api_service.dart';
+import 'package:nti_graduation_app/core/widgets/api_service.dart';
 import 'package:nti_graduation_app/features/main/data/model/category_products_model/category_products_model.dart';
 import 'package:nti_graduation_app/features/main/data/model/product_model.dart';
 import 'package:nti_graduation_app/features/main/data/model/recommended_model/recommended_model.dart';

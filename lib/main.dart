@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_graduation_app/core/helper/get_it_setup.dart';
 import 'package:nti_graduation_app/features/main/presentation/manager/fav_cubit/favorite_cubit.dart';
 import 'package:nti_graduation_app/features/main/presentation/views/main_view.dart';
+import 'package:nti_graduation_app/features/splash/prsentation/views.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class NtiGraduationApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
-        home: const MainView(),
+        home: const SplashView(),
       ),
     );
   }
