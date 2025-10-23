@@ -18,3 +18,5 @@ final class FavoriteFailure extends FavoriteState {
   final String errorMessage;
   const FavoriteFailure({required this.errorMessage});
 }
+
+final class FavoriteDelete extends FavoriteState {}

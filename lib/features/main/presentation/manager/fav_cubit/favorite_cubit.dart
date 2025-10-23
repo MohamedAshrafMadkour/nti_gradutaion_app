@@ -30,14 +30,17 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
   }
 
-  void deleteFav({required String name}) {
+  void deleteFav({required String name}) async {
     try {
       if (favoriteItems.isEmpty) return;
 
       favoriteItems.removeWhere((i) => i.name == name);
-      final List<FavoriteModel> favoriteItem = favoriteItems;
+      //  final List<FavoriteModel> favoriteItem = favoriteItems;
       log('complete delete ================${favoriteItems.length}');
-      emit(FavoriteSuccess(favoriteItems: favoriteItem));
+
+      emit(FavoriteDelete());
+      getFav();
+      emit(FavoriteSuccess(favoriteItems: favoriteItems));
     } catch (e) {
       emit(FavoriteFailure(errorMessage: e.toString()));
     }

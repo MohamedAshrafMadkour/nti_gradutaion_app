@@ -71,7 +71,6 @@ class FavItemCard extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   context.read<FavoriteCubit>().deleteFav(name: item.name);
-                  context.read<FavoriteCubit>().getFav();
                 },
                 child: Container(
                   padding: const EdgeInsets.all(6),
