@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nti_graduation_app/features/main/presentation/views/main_view.dart';
 
-// شاشة البداية (Splash)
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -62,30 +61,41 @@ class _SplashViewState extends State<SplashView>
           opacity: _fadeAnimation,
           child: SlideTransition(
             position: _slideAnimation,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'e',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 36,
-                  ),
-                ),
-                Text(
-                  'Bay',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 36,
-                  ),
-                ),
-              ],
-            ),
+            child: AppLogo(),
           ),
         ),
       ),
+    );
+  }
+}
+
+class AppLogo extends StatelessWidget {
+  const AppLogo({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: const [
+        Text(
+          'e',
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+            fontSize: 36,
+          ),
+        ),
+        Text(
+          'Bay',
+          style: TextStyle(
+            color: Colors.blue,
+            fontWeight: FontWeight.bold,
+            fontSize: 36,
+          ),
+        ),
+      ],
     );
   }
 }
